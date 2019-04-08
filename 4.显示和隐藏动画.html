@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.4.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				width: 100px;
+				height: 100px;
+				background: red;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<button>展示</button>
+		<button>隐藏</button>
+		<button>切换</button>
+		<br>
+		<div></div>
+	</body>
+</html>
+<script type="text/javascript">
+	$('button').eq(0).click(function(){
+		$('div').show('slow','linear',function(){
+			console.log('展示完毕');
+		});
+	});
+	$('button').eq(1).click(function(){
+		$('div').hide('fast',function(){
+			console.log('隐藏完毕');
+		});
+	});
+	$('button').eq(2).click(function(){
+		$('div').toggle('normal',function(){
+			console.log('切换完毕');
+		});
+	});
+</script>
+<!--speed:三种预定速度之一的字符串("slow","normal", or "fast")或表示动画时长的毫秒数值(如：1000)
+	fn:在动画完成时执行的函数，
+-->

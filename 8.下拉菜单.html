@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .nav{
+            width: 500px;
+            height: 50px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            background: mediumpurple;
+        }
+        .nav>li{
+            list-style: none;
+            float: left;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+        }
+        .sub{
+            list-style: none;
+            display: none;
+            background: #bfa;
+        }
+        .sub>li:hover,.nav>li:hover{
+            background: hotpink;
+        }
+
+    </style>
+</head>
+<body>
+<ul class="nav">
+    <li>一级菜单
+        <ul class="sub">
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+        </ul>
+    </li>
+    <li>一级菜单
+        <ul class="sub">
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+        </ul>
+    </li>
+    <li>一级菜单
+        <ul class="sub">
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+        </ul>
+    </li>
+    <li>一级菜单
+        <ul class="sub">
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+        </ul>
+    </li>
+    <li>一级菜单
+        <ul class="sub">
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+        </ul>
+    </li>
+
+</ul>
+</body>
+</html>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+     $(function () {
+         /*
+         * 在jQuery中如果需要执行动画，建议在
+         * 执行动画之前先调用stop(),然后再
+         * 执行动画
+         * 因为动画是保存在一个队列中
+         * */
+        $('.nav>li').hover(function () {
+            //停止当前动画
+            $(this).children('.sub').stop();
+            //找到当前li的二级菜单并切换效果
+            $(this).children('.sub').slideToggle('fast');
+
+        });
+      });
+</script>

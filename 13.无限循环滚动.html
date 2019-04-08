@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 600px;
+            height: 161px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+        ul{
+            list-style: none;
+            width: 1800px;
+            height: 161px;
+            background: #000;
+        }
+        li{
+            float: left;
+        }
+        /*这样给图片添加背景颜色不可行，因为图片会覆盖颜色*/
+        /*.mask{*/
+        /*    background-color: red;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div>
+    <ul>
+        <li><img src="img/a.jpg" class="mask" alt=""></li>
+        <li><img src="img/b.jpg" class="mask" alt=""></li>
+        <li><img src="img/c.jpg" alt=""></li>
+        <li><img src="img/d.jpg" alt=""></li>
+<!--        后两张图片跟前两张图片相同就没有违和感了-->
+        <li><img src="img/a.jpg" alt=""></li>
+        <li><img src="img/b.jpg" alt=""></li>
+    </ul>
+</div>
+</body>
+</html>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+     $(function () {
+         var offset = 0;
+         var timer;
+        function autoPlay(){
+            timer = setInterval(function () {
+            offset-=10;
+            //滚动四张图片后跳转
+            if(offset<=-1200){
+                offset = 0;
+            }
+            $('ul').css('marginLeft',offset);
+            },100);
+        }
+         autoPlay();
+      //  2.监听Li的移入和移出事件
+         $('li').hover(function () {
+         //    鼠标移入,停止计时器动画
+             clearInterval(timer);
+             //给非当前选中添加蒙版
+             $(this).siblings().fadeTo(100,0.5);//设置半透明，会显示出ul的背景色，所以把ul的背景色设置为黑色
+             //去除当前选中的蒙版
+             $(this).fadeIn();
+         },function () {
+             //    鼠标移出,开始计时器动画
+             autoPlay();
+             //去除所有的蒙版
+             $('li').fadeTo(500,1);
+         });
+      });
+</script>

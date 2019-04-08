@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .ad{
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            display: none;
+        }
+        span{
+            
+            display: block;
+            /*background: red;*/
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 0;
+            right: 0;
+        }
+        span:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="ad">
+        <img src="./img/ad-pic.png" alt="">
+        <span></span>
+    </div>
+</body>
+</html>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+     $(function () {
+            //动画队列
+            $('.ad').slideDown(1000).fadeOut(1000).fadeIn(1000);
+      });
+     $('span').click(function () {
+         $('.ad').remove();
+     });
+</script>

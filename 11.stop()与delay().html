@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .one{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        .two{
+            width: 500px;
+            height: 50px;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <button>开始动画</button>
+    <button>停止动画</button>
+    <div class="one"></div>
+    <div class="two"></div>
+</body>
+</html>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+     $(function () {
+         $('button').eq(0).click(function () {
+             //这样让动画先后执行
+             // $('.one').animate({
+             //     width:500
+             // },1000);
+             // $('.one').animate({
+             //     height:500
+             // },1000);
+
+             //链式编程
+             //delay()设置一个延时来推迟执行队列中之后的项目
+             $('.one').animate({
+                     width:500
+                 },1000).delay(2000).animate({
+                    height:500
+                 },1000);
+
+         });
+
+         $('button').eq(1).click(function () {
+             jQuery.fx.off = true;
+             //    stop('是否停止后续动画'，‘是否完成当前动画’
+             //默认均为false
+             // $('.one').stop(false,true);
+         });
+      });
+</script>

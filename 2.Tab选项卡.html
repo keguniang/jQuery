@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="js/jquery-1.12.4.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+		<style type="text/css">
+			
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			/*图片宽440，高248*/
+			.box{
+				width: 440px;
+				height: 298px;
+				border: 1px solid #000;
+				margin: 50px auto;
+			}
+			.nav>li{
+				list-style: none;
+				float: left;
+				width: 110px;
+				height: 50px;
+				background: orange;
+				/*margin: 5px;*/
+				text-align: center;
+				line-height: 50px;
+			}
+			.nav>.current{
+				background: #ccc;
+			}
+			.content>li{
+				list-style: none;
+				display: none;
+			}
+			.content>.show{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="box">
+			<ul class="nav">
+				<li class="current">H5+CSS</li>
+				<li>jQuery</li>
+				<li>Ajax</li>
+				<li>JS</li>
+			</ul>
+		
+			<ul class="content">
+				<li class="show"><img src="img/11.jpg"/></li>
+				<li><img src="img/12.jpg"/></li>
+				<li><img src="img/13.jpg"/></li>
+				<li><img src="img/14.jpg"/></li>
+			</ul>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+//		$('.nav>li').mouseenter(function(){
+//			$(this).addClass('current');
+//			console.log($(this).index());
+//		})
+//		
+//		$('.nav>li').mouseleave(function(){
+//			$(this).removeClass('current');
+//		})
+
+		//这样写太复杂，且有bug，当鼠标移除时，就会把图片清空，看下边的
+//		$('.nav>li').hover(function(){
+//			//1.1、修改被移入选项卡的背景颜色
+//			$(this).addClass('current');
+//			//1.2、获取当前移入选项卡的索引
+//			var index = $(this).index();
+//			//1.3根据索引找到对应的图片
+//			/*
+//			 eq()返回的是jQuery对象
+//			 get()返回的是DOM元素*/
+//			var $li = $('.content>li').eq(index);
+//			//1.4显示找到的图片
+//			$li.addClass('show');
+//		},function(){
+//			//1.1、修改移除选项卡的背景颜色
+//			$(this).removeClass('current');
+//			//1.2、获取当前移出选项卡的索引
+//			var index = $(this).index();
+//			//1.3根据索引找到对应的图片
+//			var $li = $('.content>li').eq(index);
+//			//1.4显示找到的图片
+//			$li.removeClass('show');
+//		});
+
+
+		//只监听移入事件
+		$('.nav>li').mouseenter(function(){
+			//1.1修改移入选项卡的颜色
+			$(this).addClass('current');
+			//1.2修改其它选项卡的元素
+			$(this).siblings().removeClass('current');
+			//1.3获取当前移入导航li的索引
+			var index = $(this).index();
+			//1.4根据索引找到对应的图片
+			var $li = $('.content>li').eq(index);
+			//1.5显示对应的图片
+			$li.addClass('show');
+			//1.6隐藏非当前的其他图片
+			$li.siblings().removeClass('show');
+		});
+	});
+</script>
+<!--siblings()方法用于:排他
+	同一个父辈元素下的其他元素
+	
+	eq(index)返回的是jQuery对象
+	get(index)返回的是DOM元素
+-->

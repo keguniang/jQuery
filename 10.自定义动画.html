@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            margin-top: 10px;
+        }
+        .two{
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <button>操作属性</button>
+    <button>累加属性</button>
+    <button>关键字</button>
+    <div class="one"></div>
+    <div class="two"></div>
+</body>
+</html>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    /*animate()参数
+    *   1、接受一个对象，可以在对象中修改属性
+    *   2、动画速度或时长
+    *   3、动画节奏，swing(默认)先慢中快后慢，linear匀速
+    *   4、动画执行完毕之后的回调函数*/
+     $(function () {
+        $('button').eq(0).click(function () {
+            //{}中可以同时修改多个属性，多个属性的动画也会同时执行
+            $('.one').animate({
+                width:300,
+                height:300
+            },5000,'linear',function () {
+                // alert('动画执行完毕');
+            });
+        });
+
+         $('button').eq(0).click(function () {
+             $('.two').animate({
+                 marginLeft:500
+             },5000,function () {
+                 // alert('动画执行完毕');
+             });
+         });
+
+         //累加用字符串，'+=数值'
+         $('button').eq(1).click(function () {
+             $('.one').animate({
+                 width:'+=100'
+             },1000,function () {
+                 // alert('动画执行完毕');
+             });
+         });
+
+         //关键字
+         $('button').eq(2).click(function () {
+             $('.two').animate({
+                 // width:'hide'
+                 width:'toggle'
+             },2000,function () {
+                 // alert('动画执行完毕');
+             });
+         });
+      });
+</script>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.4.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			/*图片宽440，高248*/
+			.box{
+				width: 440px;
+				height: 248px;
+				border: 1px solid #000;
+				margin: 100px auto;
+				/*子绝父相*/
+				position: relative;
+				
+			}
+			/*.content{
+				position: absolute;
+			}*/
+			.content>li{
+				list-style: none;
+				display: none;
+				
+			}
+			/*设置导航按钮*/
+			.nav{
+				/*开启绝对定位
+				 与图片都是绝对定位，都脱离文档流，
+				 下边的兄弟元素会在图片上边显示*/
+				position: absolute;
+				bottom: 15px;
+				right: 10px;
+			}
+			.nav>li{
+				list-style: none;
+				background: red;
+				/*左浮，内联元素会变成块状元素*/
+				float: left;
+				margin: 0 5px;
+				width: 15px;
+				height: 15px;
+				opacity: 0.5;
+				line-height: 15px;
+				text-align: center;
+			}
+			.content>.show{
+				display: block;
+			}
+			.nav>li:hover{
+				background:#ccc ;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<ul class="content">
+				<li class="show"><img src="img/11.jpg" alt="" /></li>
+				<li><img src="img/12.jpg" alt="" /></li>
+				<li><img src="img/13.jpg" alt="" /></li>
+				<li><img src="img/14.jpg" alt="" /></li>
+			</ul>
+			<ul class="nav">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ul>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	$('.nav>li').mouseenter(function(){
+		var index = $(this).index();
+		var $li = $('.content>li').eq(index);
+		$li.addClass('show');
+		$li.siblings().removeClass('show');
+	});
+</script>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>折叠菜单</title>
+		<script src="js/jquery-1.12.4.js" type="text/javascript" charset="utf-8"></script>
+
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.nav{
+				list-style: none;
+				width: 300px;
+				margin: 100px auto;
+				/*为每一个li设置边框，所以外边的边框不要了*/
+				/*border: 1px solid #000;*/
+			}
+			.nav>li{
+				border: 1px solid #000;
+				/*这样每个li都会有圆角，应该是让四周有圆角*/
+				/*border-radius: 10px;*/
+				/*设置每个li的高度*/
+				line-height: 35px;
+				/*为了让粗细一样，不设置下边框，但会导致最下边没有边框，所以有了下边的设置*/
+				border-bottom: none;
+				/*缩进两个字*/
+				text-indent: 2em;
+				/*为了箭头图片的定位*/
+				position: relative;
+			}
+			.nav>li:last-child{
+				border-bottom: 1px solid #000;
+				border-bottom-right-radius: 10px;
+				border-bottom-left-radius: 10px;
+			}
+			.nav>li:first-child{
+				border-top-right-radius: 10px;
+				border-top-left-radius: 10px;
+			}
+			.nav>li>span{
+				background: url('img/arrow_right.png') no-repeat center;
+				display: inline-block;
+				width: 32px;
+				height: 32px;
+				position: absolute;
+				right: 10px;
+				top: 5px;
+			}
+			.sub{
+				/*默认不显示*/
+				display: none;
+			}
+			.sub>li{
+				list-style: none;
+				background: mediumpurple;
+				border-bottom: 1px solid white;
+			}
+			.sub>li:hover{
+				background: hotpink;
+			}
+			.nav>.current>span{
+				transform:rotate(90deg) ;
+			}
+		</style>
+	</head>
+	<body>
+		<ul class="nav">
+			<li>一级菜单<span></span>
+				<ul class="sub">
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+				</ul>
+			</li>
+			<li>一级菜单<span></span>
+				<ul class="sub">
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+				</ul>
+			</li>
+			<li>一级菜单<span></span>
+				<ul class="sub">
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+				</ul>
+			</li>
+			<li>一级菜单<span></span>
+				<ul class="sub">
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+				</ul>
+			</li>
+			<li>一级菜单<span></span>
+				<ul class="sub">
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+				</ul>
+			</li>
+			<li>一级菜单<span></span>
+				<ul class="sub">
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+				</ul>
+			</li>
+			<li>一级菜单<span></span>
+				<ul class="sub">
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+				</ul>
+			</li>
+			<li>一级菜单<span></span>
+				<ul class="sub">
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+				</ul>
+			</li>
+		</ul>
+	</body>
+</html>
+<script type="text/javascript">
+	
+	$(function(){
+		//1.监听一级菜单的点击事件
+		$('.nav>li').click(function () {
+			//1.1拿到二级菜单
+			var $sub = $(this).children('.sub');
+			//1.2让二级菜单展开
+			$sub.slideToggle();
+		//    1.3拿到所有非当前的二级菜单并收起
+			$(this).siblings().children('.sub').slideUp(1000);
+		//	1.4让被点击的一级菜单箭头旋转
+			$(this).toggleClass('current');
+		//	1.5让未被点击的一级菜单箭头还原
+			$(this).siblings().removeClass('current');
+		})
+	});
+</script>
